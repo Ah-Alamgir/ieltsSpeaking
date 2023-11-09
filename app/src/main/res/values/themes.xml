@@ -1,0 +1,19 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.Speaking" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/white</item> <!-- no change for text -->
+        <item name="colorPrimaryVariant">@color/themeText</item>
+        <item name="colorOnPrimary">@color/themeText</item><!-- Button ar uporer text-->
+
+        <!-- Secondary colors -->
+        <item name="colorSecondary">@color/white</item>
+        <item name="colorSecondaryVariant">@color/white</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+        <!-- Background colors -->
+        <item name="android:windowBackground">@color/themeBack</item>
+        <item name="android:colorBackground">@color/themeBack</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/themeBack</item> <!-- no change-->
+    </style>
+
+</resources>

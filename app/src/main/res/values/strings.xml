@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Speaking</string>
+    <string name="signup">Welcome Sir,\nWe are happy to have you!</string>
+    <string name="enterName">Enter your Name</string>
+    <string name="enterPhone">Enter your Phone Numer</string>
+    <string name="vfCode">Enter verification code</string>
+    <string name="sign_up">Get code</string>
+    <string name="sign_In">Sign In</string>
+    <string name="have_an_account">Have an account?</string>
+    <string name="todo">TODO</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="practice">PRACTICE</string>
+    <string name="friends">Friends</string>
+    <string name="menu">Menu</string>
+    <string name="call">call</string>
+    <string name="profilepic">ProfilePic</string>
+    <string name="resend_the_code">Resend the code?</string>
+    <string name="submit">Submit</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="global">Global</string>
+    <string name="prectice">Prectice</string>
+    <string name="friendss">Friends</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="test_4">Test 4</string>
+    <string name="test_3">Test 3</string>
+    <string name="test_2">Test 2</string>
+    <string name="test_1">Test 1</string>
+</resources>
