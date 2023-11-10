@@ -18,7 +18,7 @@
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:srcCompat="@drawable/send"
-      app:tint="@color/themeText" />
+      app:tint="@color/purple_200" />
 
   <androidx.cardview.widget.CardView
       android:id="@+id/cardView5"
@@ -50,7 +50,7 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toTopOf="parent"
       app:srcCompat="@drawable/menu"
-      app:tint="@color/themeText" />
+      app:tint="@color/purple_200" />
 
   <ImageButton
       android:id="@+id/converCall"
@@ -63,7 +63,7 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toTopOf="parent"
       app:srcCompat="@drawable/call"
-      app:tint="@color/themeText" />
+      app:tint="@color/purple_200" />
 
   <androidx.cardview.widget.CardView
       android:id="@+id/inputs"
@@ -71,20 +71,22 @@
       android:layout_height="wrap_content"
       android:layout_marginStart="16dp"
       android:layout_marginBottom="16dp"
-      app:cardBackgroundColor="#1AFFFFFF"
       app:cardCornerRadius="30dp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toStartOf="@+id/converCall2"
       app:layout_constraintStart_toStartOf="parent">
 
-    <EditText
-        android:id="@+id/editTextText"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autofillHints=""
-        android:ems="10"
-        android:inputType="text"
-        android:text="Name" />
+        android:layout_height="wrap_content">
+
+      <com.google.android.material.textfield.TextInputEditText
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="#00FFFFFF"
+          android:hint="Tap here to write"
+          android:textColor="@color/white" />
+    </com.google.android.material.textfield.TextInputLayout>
   </androidx.cardview.widget.CardView>
 
   <androidx.cardview.widget.CardView
@@ -96,6 +98,7 @@
       android:layout_marginBottom="16dp"
       app:cardBackgroundColor="#05FFFFFF"
       app:cardCornerRadius="20dp"
+      app:cardElevation="0dp"
       app:layout_constraintBottom_toTopOf="@+id/inputs"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
@@ -108,7 +111,7 @@
       android:layout_height="wrap_content"
       android:layout_marginStart="8dp"
       android:text="Umme Maisun"
-      android:textColor="@color/themeText"
+      android:textColor="@color/purple_200"
       android:textStyle="bold"
       app:layout_constraintStart_toEndOf="@+id/cardView5"
       app:layout_constraintTop_toBottomOf="@+id/converOnline" />
@@ -120,7 +123,6 @@
       android:layout_marginStart="8dp"
       android:layout_marginTop="8dp"
       android:text="Online"
-      android:textColor="@color/white"
       android:textStyle="bold"
       app:layout_constraintStart_toEndOf="@+id/cardView5"
       app:layout_constraintTop_toTopOf="@+id/cardView5" />

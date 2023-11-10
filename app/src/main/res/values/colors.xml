@@ -10,8 +10,5 @@
 
 
 
-    <color name="themeBack">#1C2433</color>
-    <color name="themePrimary">#062C3E</color>
-    <color name="themeText">#9C27B0</color>
-    <color name="editText">#FFEB3B</color>
+    <color name="themeBack">#f6fff8</color>
 </resources>

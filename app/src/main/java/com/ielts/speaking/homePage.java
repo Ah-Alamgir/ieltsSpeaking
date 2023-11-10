@@ -1,5 +1,6 @@
 package com.ielts.speaking;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -30,7 +31,8 @@ public class homePage extends AppCompatActivity {
         tabLayout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.view_pager);
         createTabLayout();
-        getQuestion();
+//        getQuestion();
+//        startActivity(new Intent(this, converSation.class) );
 
     }
 
@@ -48,9 +50,10 @@ public static String TAG = "AirtableApiClient";
     }
 
     private void createRecyclerViewOfChat(){
-        ArrayList<String> numbers = new ArrayList<String>();
-        numbers.add("+8801872472787");
-        fireBAse.activeStatus(numbers);
+        fireBAse.getMessages();
+//        ArrayList<String> numbers = new ArrayList<String>();
+//        numbers.add("+8801872472787");
+//        fireBAse.activeStatus(numbers);
     }
 
 
@@ -86,11 +89,13 @@ public static String TAG = "AirtableApiClient";
                 // Return the appropriate fragment based on the position
                 switch (position) {
                     case 0:
-                        return new calllerList();
-                    case 1:
                         return new camBridge();
+                    case 1:
+                        return new calllerList();
                     case 2:
                         return new globalCall();
+                    case 3:
+                        return new profile();
                 }
                 return null;
             }
@@ -98,7 +103,7 @@ public static String TAG = "AirtableApiClient";
             @Override
             public int getItemCount() {
                 // Return the total number of fragments
-                return 3;
+                return 4;
             }
         });
 
@@ -106,14 +111,16 @@ public static String TAG = "AirtableApiClient";
             // Set the tab text or icons as per your requirement
             switch (position) {
                 case 0:
-                    tab.setText("Friends");
+                    tab.setIcon(R.drawable.baseline_menu_book_24);
                     break;
                 case 1:
-                    tab.setText("Practice");
+                    tab.setIcon(R.drawable.baseline_diversity_2_24);
                     break;
                 case 2:
-                    tab.setText("Global");
+                    tab.setIcon(R.drawable.baseline_cruelty_free_24);
                     break;
+                case 3:
+                    tab.setIcon(R.drawable.baseline_menu_24);
             }
         }).attach();
     }

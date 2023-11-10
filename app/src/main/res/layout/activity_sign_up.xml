@@ -64,7 +64,7 @@
                 android:ems="10"
                 android:hint="@string/enterName"
                 android:inputType="text"
-                android:textColor="@color/editText"
+                android:textColor="@color/purple_200"
                 android:textColorHint="@color/white" />
 
             <com.hbb20.CountryCodePicker
@@ -101,7 +101,7 @@
                 android:ems="10"
                 android:hint="@string/enterPhone"
                 android:inputType="phone"
-                android:textColor="@color/editText"
+                android:textColor="@color/purple_200"
                 android:textColorHint="@color/white" />
 
 
