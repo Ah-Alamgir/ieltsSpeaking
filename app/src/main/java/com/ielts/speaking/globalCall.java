@@ -1,6 +1,7 @@
 package com.ielts.speaking;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -24,10 +25,8 @@ public Context context;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        SqliteDataHelp sqliteDataHelp = new SqliteDataHelp(this.context);
-//        sqliteDataHelp.deleteDataInSQLite();
+        this.context.startActivity(new Intent(this.context,  VoiceChatViewActivity.class));
+
         return inflater.inflate(R.layout.fragment_global_call, container, false);
-
-
     }
 }

@@ -7,17 +7,34 @@
     android:background="@color/themeBack"
     tools:context=".SignUp">
 
-    <Button
-        android:id="@+id/SignUp"
-        android:layout_width="150dp"
+    <com.theartofdev.edmodo.cropper.CropImageView
+        android:id="@+id/cropImageView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="@string/sign_up"
-        app:cornerRadius="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/cardView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintVertical_bias="1.0" />
+        android:layout_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:cardCornerRadius="60dp"
+        app:cardElevation="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        app:layout_constraintStart_toStartOf="@+id/cardView"
+        app:layout_constraintTop_toTopOf="@+id/cardView">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="@string/todo"
+            android:scaleType="fitXY"
+            android:src="@drawable/camera" />
+    </androidx.cardview.widget.CardView>
+
 
     <Button
         android:id="@+id/SignIn"
@@ -36,9 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        app:cardBackgroundColor="#20FFFFFF"
         app:cardCornerRadius="18dp"
-        app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,45 +79,54 @@
                 android:ems="10"
                 android:hint="@string/enterName"
                 android:inputType="text"
-                android:textColor="@color/purple_200"
-                android:textColorHint="@color/white" />
+                android:textColor="@color/purple_200" />
 
-            <com.hbb20.CountryCodePicker
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:ccpDialog_allowSearch="true"
-                app:ccpDialog_backgroundColor="@color/themeBack"
-                app:ccpDialog_searchEditTextTint="@color/white"
-                app:ccpDialog_showCloseIcon="true"
-                app:ccpDialog_showPhoneCode="true"
-                app:ccpDialog_textColor="@color/white"
-                app:ccp_arrowColor="@color/white"
-                app:ccp_arrowSize="20dp"
-                app:ccp_autoDetectCountry="true"
-                app:ccp_autoDetectLanguage="true"
-                app:ccp_autoFormatNumber="true"
-                app:ccp_clickable="true"
-                app:ccp_contentColor="@color/white"
-                app:ccp_countryAutoDetectionPref="SIM_ONLY"
-                app:ccp_defaultLanguage="ENGLISH"
-                app:ccp_flagBorderColor="@color/white"
-                app:ccp_showArrow="true"
-                app:ccp_showFlag="true"
-                app:ccp_showPhoneCode="true"
-                app:ccp_textGravity="RIGHT" />
-
-            <EditText
-                android:id="@+id/SignUpPhone"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:hint="@string/enterPhone"
-                android:inputType="phone"
-                android:textColor="@color/purple_200"
-                android:textColorHint="@color/white" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/cpp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:ccpDialog_allowSearch="true"
+                    app:ccpDialog_backgroundColor="@color/white"
+                    app:ccpDialog_fastScroller_bubbleColor="@color/purple_200"
+                    app:ccpDialog_fastScroller_handleColor="@color/purple_200"
+                    app:ccpDialog_initialScrollToSelection="true"
+                    app:ccpDialog_keyboardAutoPopup="false"
+                    app:ccpDialog_searchEditTextTint="@color/purple_200"
+                    app:ccpDialog_showCloseIcon="true"
+                    app:ccpDialog_showFastScroller="false"
+                    app:ccpDialog_showPhoneCode="true"
+                    app:ccpDialog_showTitle="false"
+                    app:ccpDialog_textColor="@color/purple_200"
+                    app:ccp_arrowColor="@color/purple_200"
+                    app:ccp_arrowSize="20dp"
+                    app:ccp_autoDetectCountry="true"
+                    app:ccp_autoDetectLanguage="true"
+                    app:ccp_autoFormatNumber="true"
+                    app:ccp_clickable="true"
+                    app:ccp_contentColor="@color/purple_200"
+                    app:ccp_countryAutoDetectionPref="SIM_ONLY"
+                    app:ccp_rememberLastSelection="true"
+                    app:ccp_selectionMemoryTag="signupCCP"
+                    app:ccp_showArrow="true"
+                    app:ccp_showFlag="false"
+                    app:ccpDialog_showFlag="false"
+                    app:ccp_showNameCode="false"
+                    app:ccp_showPhoneCode="true"
+                    app:ccp_textGravity="RIGHT"
+                    app:ccp_textSize="20sp" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/SignUpPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="@string/enter_phone_number" />
+
+            </LinearLayout>
 
 
         </LinearLayout>
@@ -110,6 +134,18 @@
 
     </androidx.cardview.widget.CardView>
 
+
+    <Button
+        android:id="@+id/SignUp"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/sign_up"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView"
@@ -119,7 +155,6 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="60dp"
         android:text="@string/signup"
-        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/cardView2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -138,28 +173,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/SignIn" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="60dp"
-        app:cardBackgroundColor="#1AFFFFFF"
-        app:cardCornerRadius="60dp"
-        app:layout_constraintBottom_toTopOf="@+id/cardView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cardView">
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:contentDescription="@string/todo"
-            android:src="@drawable/camera"
-            app:tint="@color/white" />
-    </androidx.cardview.widget.CardView>
-
+    <!-- Image Cropper fill the remaining available height -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

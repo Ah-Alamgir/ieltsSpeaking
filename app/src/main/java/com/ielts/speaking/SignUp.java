@@ -1,20 +1,27 @@
 package com.ielts.speaking;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.telephony.PhoneNumberUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
+import com.hbb20.CountryCodePicker;
 import com.ielts.speaking.publicClasses.PermissionHandler;
-import com.ielts.speaking.publicClasses.ProfilePictureManager;
 import com.ielts.speaking.publicClasses.phoneLogin;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 
 public class SignUp extends AppCompatActivity {
@@ -35,55 +42,66 @@ public class SignUp extends AppCompatActivity {
         phonetext = findViewById(R.id.SignUpPhone);
         CardView imgPicker = findViewById(R.id.cardView2);
         profileImage = findViewById(R.id.imageView);
+//        cropImageView = findViewById(R.id.cropImageView);
+
+
 
         signInButton.setOnClickListener(v -> startActivity(new Intent(SignUp.this, signIn.class)));
+
         signUpButton.setOnClickListener(v -> {
-            if (nameText.getText().toString().isEmpty()) {
+
+            String username = nameText.getText().toString();
+            CountryCodePicker cpp = findViewById(R.id.cpp);
+            String phoneNumber = cpp.getSelectedCountryCodeWithPlus() + phonetext.getText().toString().trim();
+
+
+            if (username.isEmpty()) {
                 nameText.setError("Please enter your name");
-            } else if (phonetext.getText().toString().isEmpty()) {
+            } else if (phoneNumber.isEmpty()) {
                 phonetext.setError("Please enter your phone number");
+            } else if (!PhoneNumberUtils.isGlobalPhoneNumber(phoneNumber)) {
+                Toast.makeText(this, "Please enter country code", Toast.LENGTH_LONG).show();
             } else {
-                phoneLogin.init(SignUp.this, phonetext.getText().toString().trim());
-                phoneLogin.startPhoneNumberVerification(phonetext.getText().toString().trim(), SignUp.this);
+                phoneLogin.init(SignUp.this, phoneNumber);
+                phoneLogin.startPhoneNumberVerification(phoneNumber, SignUp.this);
             }
         });
+
 
         imgPicker.setOnClickListener(v -> {
             if (PermissionHandler.checkPermissions(this)) {
-                ProfilePictureManager profilePictureManager = new ProfilePictureManager(this);
-                profilePictureManager.pickImage();
-            } else {
-                // Permissions are not granted, request them
-                PermissionHandler.requestPermissions(SignUp.this);
+                pickImage();
+            }else {
+            pickImage();
             }
-            ProfilePictureManager profilePictureManager = new ProfilePictureManager(this);
-            profilePictureManager.pickImage();
-
         });
 
 
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if (requestCode == PermissionHandler.PERMISSION_REQUEST_CODE) {
-            if (PermissionHandler.handlePermissionsResult(requestCode, grantResults)) {
-                // All permissions are granted, proceed with the action
-                ProfilePictureManager profilePictureManager = new ProfilePictureManager(this);
-                profilePictureManager.pickImage();
+
+    private void pickImage() {
+        pickImageLauncher.launch("image/*");
+    }
+
+    public ActivityResultLauncher<String> pickImageLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+        @Override
+        public void onActivityResult(Uri result) {
+            if( result != null){
+                profileImage.setImageURI(result);
+                Dialog dialog = new Dialog(SignUp.this, android.R.style.Theme_DeviceDefault_Light_NoActionBar_Fullscreen);
+                dialog.setContentView(R.layout.crop_image);
+                CropImageView imagaCropper = (CropImageView) dialog.findViewById(R.id.cropImageView);
+                imagaCropper.setImageUriAsync(result);
+                dialog.show();
+                Button button = dialog.findViewById(R.id.cropButton);
+                button.setOnClickListener(v -> {
+                    Bitmap croppedImage = imagaCropper.getCroppedImage();
+                    profileImage.setImageBitmap(croppedImage);
+                    dialog.hide();
+                });
             }
         }
-    }
-
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        ProfilePictureManager profilePictureManager = new ProfilePictureManager(SignUp.this);
-        profilePictureManager.onActivityResult(requestCode, resultCode, data);
-    }
+    });
 }
-

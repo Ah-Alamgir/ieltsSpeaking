@@ -30,4 +30,9 @@
     <string name="profile">profile</string>
     <string name="books">books</string>
     <string name="globalcall">globalCall</string>
+    <string name="enter_phone_number">Enter phone number</string>
+    <string name="default_web_client_id">166228051707-cd2qli8j8qtjn2gr7j52s039d76gk5rn.apps.googleusercontent.com</string>
+    <string name="crop">crop</string>
+    <string name="agora_app_id">c03f2ce63fff4627a5ee373c17f05e93</string>
+    <string name="agora_access_token">40fd0015585e4056b05c61618c44dd51</string>
 </resources>

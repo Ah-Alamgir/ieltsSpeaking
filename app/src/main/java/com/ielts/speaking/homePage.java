@@ -1,6 +1,7 @@
 package com.ielts.speaking;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -13,6 +14,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.ielts.speaking.publicClasses.AirtableApiClient;
+import com.ielts.speaking.publicClasses.PermissionHandler;
 import com.ielts.speaking.publicClasses.SqliteDataHelp;
 import com.ielts.speaking.publicClasses.fireBAse;
 
@@ -31,6 +33,9 @@ public class homePage extends AppCompatActivity {
         tabLayout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.view_pager);
         createTabLayout();
+
+
+
 //        getQuestion();
 //        startActivity(new Intent(this, converSation.class) );
 
@@ -123,6 +128,13 @@ public static String TAG = "AirtableApiClient";
                     tab.setIcon(R.drawable.baseline_menu_24);
             }
         }).attach();
+
+
+
+        if (!PermissionHandler.checkPermissions(homePage.this)){
+            PermissionHandler.requestPermissions(homePage.this);
+        }
+
     }
 
 }
